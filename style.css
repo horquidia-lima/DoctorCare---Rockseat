@@ -15,8 +15,14 @@
 
     --brand-beige: hsl(39, 100%, 97%);
     --brand-light: hsl(148, 23%, 89%);
+    --bg-light: hsl(148, 14%, 97%);
+    --brand-dark: hsl(170, 100%, 14%);
 
     --nav-height: 7.2rem;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -31,6 +37,7 @@ body {
     text-align: center;
 
     overflow: overlay;
+    background-color: var(--bg-light);
 }
 
 .wrapper {
@@ -43,38 +50,52 @@ ul {
     list-style: none;
 }
 
-/*----HEADER----*/
-
-header {
-    margin-top: calc(4.1rem + var(--nav-height));
+img {
+    max-width: 100%;
 }
 
-header h4 {
+section {
+    padding-block: 10rem;
+}
+
+section header h4 {
     font-size: 1.4rem;
     color: var(--primary-color); 
     margin-bottom: 1.6rem;
+
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.08rem;
+    text-transform: uppercase;
 }
 
-header h1 {
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+
+    color: var(--headline);
+}
+
+section header h1 {
     font-size: 3.4rem;
     color: var(--headline);
     line-height: 130%;
     margin-bottom: 2.4rem;
 }
 
-header p {
-    font-size: 1.8rem;
+section .content p {
     font-weight: 400;
-    color: var(--paragraph);
-    margin-bottom: 3.2rem;
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    color: var(--paragraph)
 }
 
-header button {
+.button {
     background: var(--primary-color);
     border: none;
     margin-bottom: 6rem;
-    height: 6.2rem;
-    width: 26.3rem;
+    padding: 1.6rem 3.2rem;
     border-radius: 4rem;
     color: white;
 
@@ -87,18 +108,38 @@ header button {
     align-items: center;
     gap: 1.6rem;
 
-    margin-left: auto;
-    margin-right: auto;
+    text-decoration: none;
+
+    width: fit-content;
+
+    transition: background 200ms;
 }
 
-header img {
+.button:hover {
+    background-color: var(--brand-dark);
+}
+
+/*----Home----*/
+
+#home {
+    padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home p {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--paragraph);
+    margin-bottom: 3.2rem;
+}
+
+#home img {
     width: 26.4rem;
     display: block;
     margin-inline: auto;
     object-position: 0 2rem;
 }
 
-header::before {
+#home::before {
     content: "";
     width: 100%;
     height: calc(108rem + var(--nav-height));
@@ -111,7 +152,11 @@ header::before {
     z-index: -1;
 }
 
-.stats {
+#home .button {
+    margin-inline: auto;
+}
+
+#home .stats {
     width: 32.7rem;
     padding-block: 4rem;
     margin-inline: auto;
@@ -126,7 +171,7 @@ header::before {
     gap: 6rem;    
 }
 
-.stat h3 {
+#home .stat h3 {
     font-size: 4.3rem;
     color: var(--headline);
     line-height: 130%;
@@ -134,7 +179,7 @@ header::before {
     margin-bottom: .4rem;
 }
 
-.stat p {
+#home .stat p {
     margin: 0;
     color: var(--primary-color);
     line-height: 130%;
@@ -149,8 +194,8 @@ nav {
 
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 100;
 }
 
 nav .wrapper {
@@ -161,10 +206,9 @@ nav .wrapper {
 
 nav.scroll {
     background: var(--primary-color);
-    width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll .logo path{
     fill: white;
 }
 
@@ -184,7 +228,7 @@ body.menu-expanded {
 }
 
 body.menu-expanded > :not(nav) {
-    display: none;
+    visibility: hidden;
 }
 
 .menu,
@@ -200,6 +244,10 @@ body.menu-expanded .close-menu {
     visibility: visible;
 }
 
+.menu {
+    transform: translateY(100%);
+}
+
 body.menu-expanded .menu{
     position: fixed;
     top: 0;
@@ -210,10 +258,9 @@ body.menu-expanded .menu{
     height: 100vh;
 
     padding-top: var(--nav-height);
-}
 
-body.menu-expanded nav {
-    position: relative;
+    transition: transform 300ms;
+    transform: translateY(0);
 }
 
 .menu ul:nth-child(1) {
@@ -249,6 +296,12 @@ body.menu-expanded nav {
     margin-bottom: 8rem;
 }
 
+.menu .button:hover {
+    color: white;
+    background-color: var(--primary-color);
+    filter: brightness(1.1);
+}
+
 .social-links {
     display: flex;
     align-items: center;
@@ -269,3 +322,135 @@ body.menu-expanded .logo path {
 body.menu-expanded button svg:nth-child(2) path {
     stroke: white;
 }
+
+/*----SERVICES----*/
+
+#services header h2 {
+    margin-bottom: 6rem;
+}
+
+#services .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+#services .card {
+    padding: 2.4rem;
+    text-align: left;
+
+    background: white;
+
+    border: 1px solid var(--brand-light);
+    border-radius: .6rem;
+}
+
+#services .card h3 {
+    margin-block: 1.6rem;
+}
+
+/*----ABOUT----*/
+
+#about {
+    text-align: left;
+    background-color: var(--brand-beige);
+}
+
+#about header h2 {
+    margin-bottom: 2.4rem;
+}
+
+#about .content p {
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
+}
+
+/*----CONTACT----*/
+
+#contact {
+    text-align: left;
+}
+
+#contact header {
+    margin-bottom: 3.2rem;
+}
+
+#contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    margin-bottom: 3.2rem;
+}
+
+#contact ul li {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+}
+
+
+/*----FOOTER----*/
+
+footer {
+    background-color: var(--primary-color);
+    padding-block: 6rem;
+
+    text-align: left;
+    color: white;
+}
+
+footer .logo {
+    margin-bottom: 2.4rem;
+    display: inline-block;
+}
+
+footer .logo svg {
+    width: 23.6rem;
+    height: 3.1rem;
+}
+
+footer .logo path {
+    fill: white;
+}
+
+footer p {
+    color: var(--brand-beige);
+    line-height: 2;
+
+    margin-bottom: 3.2rem;
+}
+
+footer .social-links {
+    justify-content: flex-start;
+}
+
+
+/*backToTopButton*/
+
+#backToTopButton {
+    position: fixed;
+
+    bottom: 1rem;
+    right: 2.5rem;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:  200ms;
+    transform: translateY(100%);
+}
+
+#backToTopButton.show {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+
+
+
+
+
